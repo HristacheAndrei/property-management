@@ -23,8 +23,8 @@ public class UserController {
         return new ResponseEntity<>(responseUserDTO, HttpStatus.CREATED);
     }
     @GetMapping("/login")
-    public ResponseEntity<UserDTO> loginUser(@RequestParam String email, @RequestParam String password) {
-        UserDTO responseUserDTO = userServiceImp.login(email, password);
+    public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO userDTO) {
+        UserDTO responseUserDTO = userServiceImp.login(userDTO.getEmail(), userDTO.getPassword());
         if (responseUserDTO != null)
             return new ResponseEntity<>(responseUserDTO, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

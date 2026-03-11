@@ -5,9 +5,11 @@ import com.example.propertymanagement.dto.UserDTO;
 import com.example.propertymanagement.entity.UserEntity;
 import com.example.propertymanagement.repository.UserRespository;
 import com.example.propertymanagement.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -27,13 +29,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public UserDTO login(String email, String password) {
-        if (email.isEmpty() || password.isEmpty()) return null;
-        List<UserEntity> allUsers = userRespository.findAll();
-        UserEntity myUser = allUsers.stream().filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password)).toList().get(0);
-
-        if (myUser != null) {
-            return userConvertor.converUserEntityToUserDTO(myUser);
-        }
-        return null;
+        Optional<UserEntity> user = userRespository.findByEmailAndPassword(email, password);
+        return user.map(userConvertor::converUserEntityToUserDTO).orElse(null);
     }
 }
