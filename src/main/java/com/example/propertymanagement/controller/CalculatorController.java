@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-//3 WAYS TO EXTRACT DATA FROM AN URL
+/*//3 WAYS TO EXTRACT DATA FROM AN URL
 // 1 -> WITH @REQUESTPARAM(NUMEVARIABILA)
 //2 -> WITH @PATHVARIABLE("NUMEVAR") + URL/{NUMEVAR}
-//3 -> WITH DTO, WE CAN MAP WHAT WE RECEIVE IN A POST WITH @REQUESTBODY DTOCLASS DTOVAR
+//3 -> WITH DTO, WE CAN MAP WHAT WE RECEIVE IN A POST WITH @REQUESTBODY DTOCLASS DTOVAR*/
 
 @RestController
 @RequestMapping("/api/v1/calculator")
@@ -22,7 +22,10 @@ public class CalculatorController {
     }
     // with pathVariables
     @GetMapping("/sub/{num1}/{num2}")
-    public Double substract(@PathVariable("num1") Double num1,@PathVariable("num2") Double num2){
+    public Double substrate(
+            @PathVariable("num1") Double num1,
+            @PathVariable("num2") Double num2
+    ){
         Double result = null;
         if (num1 > num2)
             result = num1 - num2;
@@ -32,8 +35,8 @@ public class CalculatorController {
     }
 
     @PostMapping("/multiply")
-    private ResponseEntity<Double> multiply (@RequestBody CalculatorDTO calculatorDTO) {
+    public ResponseEntity<Double> multiply (@RequestBody CalculatorDTO calculatorDTO) {
         Double response =  calculatorDTO.getNum1() * calculatorDTO.getNum2() * calculatorDTO.getNum3() * calculatorDTO.getNum4();
-        return new ResponseEntity<Double>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

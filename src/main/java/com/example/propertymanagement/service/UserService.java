@@ -1,7 +1,6 @@
 package com.example.propertymanagement.service;
 
 import com.example.propertymanagement.dto.UserDTO;
-import org.apache.catalina.User;
 
 public interface UserService {
     UserDTO register (UserDTO userDTO);

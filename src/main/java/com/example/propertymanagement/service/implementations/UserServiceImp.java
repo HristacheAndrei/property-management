@@ -5,7 +5,6 @@ import com.example.propertymanagement.dto.UserDTO;
 import com.example.propertymanagement.entity.UserEntity;
 import com.example.propertymanagement.repository.UserRespository;
 import com.example.propertymanagement.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +12,13 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
-    @Autowired
-    private UserRespository userRespository;
+    private final UserRespository userRespository;
 
-    @Autowired
-    private UserConvertor userConvertor;
-
+    private final UserConvertor userConvertor;
+    public UserServiceImp(UserRespository userRespository, UserConvertor userConvertor) {
+        this.userConvertor = userConvertor;
+        this.userRespository = userRespository;
+    }
     @Override
     public UserDTO register(UserDTO userDTO) {
         UserEntity savedUser =  userRespository.save(userConvertor.convertUserDTOToUserEntity(userDTO));

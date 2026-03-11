@@ -1,6 +1,5 @@
 package com.example.propertymanagement.repository;
 
-import com.example.propertymanagement.entity.PropertyEntity;
 import com.example.propertymanagement.entity.UserEntity;
 import org.springframework.data.repository.ListCrudRepository;
 

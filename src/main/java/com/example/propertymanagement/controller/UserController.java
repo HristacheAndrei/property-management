@@ -1,23 +1,21 @@
 package com.example.propertymanagement.controller;
 
 import com.example.propertymanagement.dto.UserDTO;
-import com.example.propertymanagement.repository.UserRespository;
 import com.example.propertymanagement.service.implementations.UserServiceImp;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
 
-    @Autowired
-    private UserServiceImp userServiceImp;
+    private final UserServiceImp userServiceImp;
+
+    public UserController(UserServiceImp userServiceImp) {
+        this.userServiceImp = userServiceImp;
+    }
 
     @PostMapping("/createuser")
     public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO) {

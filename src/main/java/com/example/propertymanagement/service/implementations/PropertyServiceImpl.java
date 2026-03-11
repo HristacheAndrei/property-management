@@ -6,19 +6,19 @@ import com.example.propertymanagement.entity.PropertyEntity;
 import com.example.propertymanagement.repository.PropertyRespository;
 import com.example.propertymanagement.service.PropertyService;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
 
-    @Autowired
-    private PropertyRespository propertyRespository;
-    @Autowired
-    private PropertyConvertor propertyConvertor;
+    private final PropertyRespository propertyRespository;
+    private final PropertyConvertor propertyConvertor;
+    public PropertyServiceImpl(PropertyRespository propertyRespository,PropertyConvertor propertyConvertor) {
+        this.propertyRespository = propertyRespository;
+        this.propertyConvertor = propertyConvertor;
+    }
     @Override
     @Transactional
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
