@@ -19,9 +19,7 @@ public class PropertyEntity {
     private String title; //2badroom appartment
     //if we put like this JPA will take the name of the column like description
     private String description; //
-    private String ownerName;
-    @Column(name="EMAIL", nullable = false)
-    private String ownerEmail;
+
     private Double price;
     private String address;
 }
