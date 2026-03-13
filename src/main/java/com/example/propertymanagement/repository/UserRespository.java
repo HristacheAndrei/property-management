@@ -13,5 +13,6 @@ public interface UserRespository extends ListCrudRepository<UserEntity, Long> {
     // findAllById,delete, deleteById, deleteAll, update, etc
     public Optional<UserEntity> findByEmailAndPassword(String email, String password);
     public Optional<UserEntity> findByPhone(String phone);
+    public Optional<UserEntity> findByEmail(String email);
 }
 
