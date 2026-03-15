@@ -7,7 +7,6 @@ import com.example.propertymanagement.exception.BusinessException;
 import com.example.propertymanagement.exception.ErrorModel;
 import com.example.propertymanagement.repository.UserRespository;
 import com.example.propertymanagement.service.UserService;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import java.util.Optional;
 public class UserServiceImp implements UserService {
 
     private final UserRespository userRespository;
-
     private final UserConvertor userConvertor;
     public UserServiceImp(UserRespository userRespository, UserConvertor userConvertor) {
         this.userConvertor = userConvertor;
@@ -33,6 +31,7 @@ public class UserServiceImp implements UserService {
             errorModel.setCode("INVALID USERNAME");
             errorModel.setMessage("The username already exists!");
             errorModelList.add(errorModel);
+
             throw new BusinessException(errorModelList);
         }
         UserEntity savedUser =  userRespository.save(userConvertor.convertUserDTOToUserEntity(userDTO));
